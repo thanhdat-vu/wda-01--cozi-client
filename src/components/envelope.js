@@ -52,7 +52,12 @@ export default function Envelope({ letter }) {
             </Flex>)}
             <Flex sx={styles.inner} onClick={handleRead}>
                 <Text>
-                    {moment(letter.dateCreated).calendar()}
+                    {moment(letter.dateCreated).calendar({
+                        sameDay: '[Hôm nay lúc] H:m',
+                        lastDay: '[Hôm qua lúc] H:m',
+                        lastWeek: 'dd, DD/MM/YYYY [lúc] H:m',
+                        sameElse: 'dd, DD/MM/YYYY'
+                    })}
                 </Text>
                 <Text>
                     Từ: {letter.from}

@@ -89,6 +89,7 @@ export default function Editor() {
 
                     <FormLabel htmlFor='tittle'>Tiêu đề</FormLabel>
                     <Input
+                        id='tittle'
                         value={letterData.title}
                         onChange={(e) => setLetterData({ ...letterData, title: e.target.value })}
                     />

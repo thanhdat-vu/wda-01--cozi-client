@@ -6,9 +6,10 @@ import {
 } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 
-export default function WorldMailbox() {
+export default function SecretMailbox() {
     let letters = useSelector((state) => state.letters);
-    letters = letters.filter(letter => letter.to !== 'Ai đó đáng tin cậy');
+    letters = letters.filter(letter => letter.to === 'Ai đó đáng tin cậy');
+    
 
     return (
         <Flex sx={styles.mailbox}>

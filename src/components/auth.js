@@ -49,7 +49,7 @@ export default function Auth() {
                 <FormLabel htmlFor='email'>Email</FormLabel>
                 <Input name='email' id='email' type="email" onChange={handleChange} />
                 <FormLabel htmlFor='password'>Mật khẩu</FormLabel>
-                <Input name='password' type='password' id='name' onChange={handleChange} />
+                <Input name='password' id='password' type='password' onChange={handleChange} />
 
                 {!isSignIn && (
                     <>

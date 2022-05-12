@@ -2,15 +2,41 @@ import {
     Flex,
     Text,
     Button,
+    useDisclosure,
+    Modal,
+    ModalOverlay,
+    ModalHeader,
+    ModalContent,
+    ModalBody,
+    ModalCloseButton,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import MenuLink from './menuLink';
 
 export default function Menu() {
+    const user = JSON.parse(localStorage.getItem('profile'));
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
     return (
         <Flex sx={styles.menu}>
             <MenuLink to='home' text='Bể thư thế giới' />
-            <Text>Bể thư tâm tình</Text>
+            { user?.result?.coziPoints > 10 ? (
+                <MenuLink to='secret' text='Bể thư tâm tình' />)
+            : (
+                <>
+                    <Text cursor='pointer' onClick={onOpen}>Bể thư tâm tình</Text>
+                    <Modal isOpen={isOpen} onClose={onClose}>
+                        <ModalOverlay />
+                        <ModalContent>
+                        <ModalHeader>Chưa đủ tin cậy</ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody mb='4'>
+                            Bạn cần "Điểm tin cậy" trên 10 để mở "Bể thư tâm tình".
+                        </ModalBody>
+                        </ModalContent>
+                    </Modal>
+                </>
+            )}
             <MenuLink to='inbox' text='Hộp thư đến' />
             <MenuLink to='outbox' text='Hộp thư đi' />
             <Text>Thư quan trọng</Text>

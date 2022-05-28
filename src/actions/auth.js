@@ -1,36 +1,33 @@
 import * as api from '../api/index.js';
 
-export const signIn = (formData, navigate) => async (dispatch) => {
-    try {
-        const { data } = await api.signIn(formData);
-        dispatch({
-            type: 'AUTH',
-            data,
-        });
-        navigate('/', {state: { auth: true }});
-
-    } catch (error) {
-        // dispatch({
-        //     type: 'ERR',
-        //     data: error.response.data.message,
-        // });
-        console.log(error.message);
-    }
+export const signIn = (formData) => async (dispatch) => {
+    return await api.signIn(formData).then(
+        (response) => {
+            dispatch({
+                type: 'AUTH',
+                data: response.data,
+            });
+            return Promise.resolve();
+        },
+        (error) => {
+            console.log(error);
+            return Promise.reject(error.response.data.message);
+        }
+    )
 }
 
-export const signUp = (formData, navigate) => async (dispatch) => {
-    try {
-        const { data } = await api.signUp(formData);
-        dispatch({
-            type: 'AUTH',
-            data,
-        });
-        navigate('/', {state: { auth: true }});
-    } catch (error) {
-        // dispatch({
-        //     type: 'ERR',
-        //     data: error.response.data.message,
-        // });
-        console.log(error.message);
-    }
+export const signUp = (formData) => async (dispatch) => {
+    return api.signUp(formData).then(
+        (response) => {
+            dispatch({
+                type: 'AUTH',
+                data: response.data,
+            });
+            return Promise.resolve();
+        },
+        (error) => {
+            console.log(error);
+            return Promise.reject(error.response.data.message);
+        }
+    )
 }

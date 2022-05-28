@@ -24,7 +24,10 @@ export default function Reader() {
                 <Text whiteSpace='pre-line'>{letter.body}</Text>
             </Flex>
             {user && (user.result._id !== letter.sender) && (
-                <Button mt='8' variant='filled' onClick={handleReply}>Phản hồi</Button>
+                <Flex>
+                    <Button>Cảm ơn</Button>
+                    <Button mt='8' variant='filled' onClick={handleReply}>Phản hồi</Button>
+                </Flex>
             )}
         </Flex>
     )

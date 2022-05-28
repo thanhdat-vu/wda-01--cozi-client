@@ -2,14 +2,18 @@ import Header from './header';
 import {
     Flex,
     Box,
+    useToast,
 } from '@chakra-ui/react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Menu from './menu';
 import Footer from './footer';
+import { useEffect } from 'react';
 
 export default function Layout() {
     const user = localStorage.getItem('profile');
     const { state } = useLocation();
+
+    const toast = useToast();
 
     return (
         <>
